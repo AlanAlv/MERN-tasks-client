@@ -1,15 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 
-const onChangeLogin = () => {
-
-}
 const Login = () => {
+
+    
+    const [ user, saveUser] = useState({
+        email: '',
+        password: ''
+    });
+
+    // Destructure User
+    const { email, password } = user;
+
+    const onChangeLogin = e => {
+        saveUser({
+            ...user,
+            [e.target.name] : e.target.value
+        })
+    }
+
+    // User cliks Login
+    const onSubmitLogin = e => {
+        e.prevent.default();
+    }
+
     return ( 
         <div className="form-user">
             <div className="container-form shadow-dark">
                 <h1>Login</h1>
-                <form>
+                <form
+                    onSubmit={onSubmitLogin}
+                >
                     <div className="field-form">
                         <label htmlFor="email">Email</label>
                         <input 
@@ -17,6 +39,7 @@ const Login = () => {
                             name="email" 
                             id="email"
                             placeholder="Email"
+                            value={email}
                             onChange={onChangeLogin}
                             />
                     </div>
@@ -27,6 +50,7 @@ const Login = () => {
                             name="password" 
                             id="password"
                             placeholder="Password"
+                            value={password}
                             onChange={onChangeLogin}
                             />
                     </div>
@@ -39,6 +63,12 @@ const Login = () => {
                         />
                     </div>
                 </form>
+                <Link 
+                    to={'new-account'} 
+                    className="link-account"
+                >
+                    Sign Up    
+                </Link>
             </div>
         </div>
      );
