@@ -139,12 +139,12 @@ aside  {
   background-color: var(--gray2);
   padding: 4rem;
 }
-.name-user {
+.username {
   color: var(--white);
   font-size: 2.2rem;
   margin: 0;
 }
-.name-user span {
+.username span {
   font-weight: 900;
 }
 .nav-main a {
