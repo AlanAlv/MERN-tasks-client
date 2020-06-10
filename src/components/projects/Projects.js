@@ -1,8 +1,18 @@
-import React from 'react'
+import React from 'react';
+import Sidebar from '../layout/Sidebar';
 
 const Projects = () => {
     return ( 
-        <h1>Projects</h1>
+        <div className="container-app">
+            <Sidebar />
+            <div className="main-section">
+                <main>
+                    <div className="container-tasks">
+
+                    </div>
+                </main>
+            </div>
+        </div>
      );
 }
  
