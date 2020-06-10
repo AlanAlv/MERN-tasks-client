@@ -124,10 +124,10 @@ aside  {
 .projects {
   margin-top: 10rem;
 }
-.list-projects li {
+.projects-list li {
   margin-bottom: 2rem;
 }
-.list-projects li a {
+.projects-list li a {
   font-size: 1.4rem;
   color: var(--gray2);
   line-height: 1.5;
