@@ -5,7 +5,7 @@ import projectReducer from './projectReducer';
 
 const ProjectState = props => {
     const initialState = {
-        form : false
+        form : true
     }
 
     // Dispatch actions
