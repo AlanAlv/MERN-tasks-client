@@ -211,7 +211,7 @@ aside  {
   -moz-box-shadow: 0px 6px 11px -8px rgba(0,0,0,0.9);
   box-shadow: 0px 6px 11px -8px rgba(0,0,0,0.9);
 }
-.task .acciones .btn:first-of-type {
+.task .actions .btn:first-of-type {
   margin-right: 1rem;
 }
 .task p {

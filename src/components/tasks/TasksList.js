@@ -30,6 +30,13 @@ const TasksList = () => {
                         ))
                 }
             </ul>
+
+            <button
+                type="button"
+                className="btn btn-delete"
+            >
+                Delete Project &times;
+            </button>
         </Fragment>
      );
 }
