@@ -6,7 +6,7 @@ const NewProject = () => {
     // Form State
     const projectsContext = useContext(projectContext);
 
-    const { form, showForm } = projectsContext;
+    const { form, showForm, addProject } = projectsContext;
 
     // Project State
     const [ project, saveProject ] = useState({
@@ -16,8 +16,23 @@ const NewProject = () => {
     // Destructure project name
     const { name } = project;
 
+    // User adds project
     const onSubmitProject = e => {
-        e.prevent.Default();
+        e.preventDefault();
+
+        // Validation
+        if (name === ''){
+            return;
+        }
+
+        // Add to state
+        addProject(project)
+
+        // Reset form
+        saveProject({
+            name: ''
+        })
+
     }
 
     // Read inputs
