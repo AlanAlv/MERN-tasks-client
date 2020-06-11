@@ -15,7 +15,7 @@ const ProjectsList = () => {
 
 
     // Validate if there are projects
-    if (projects.length === 0) return null;
+    if (projects.length === 0) return <p>There are no projects, start a new one!</p>;
 
 
     return ( 
