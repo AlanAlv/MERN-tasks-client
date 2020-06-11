@@ -1,8 +1,19 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import Task from './Task';
-
+import projectContext from '../../context/projects/projectContext';
 
 const TasksList = () => {
+
+    // Projects State
+    const projectsContext = useContext(projectContext);
+
+    const { project } = projectsContext;
+
+    // No current project
+    if (!project) return <h2>Select a project</h2>
+
+    // Destructure current project
+    const [ currentProject ] = project
 
     const tasksProject = [
         { name: 'Choose Product', state: true },
@@ -14,7 +25,7 @@ const TasksList = () => {
 
     return ( 
         <Fragment>
-            <h2>Project: Virtual Store</h2>
+            <h2>Project:  {currentProject.name}</h2>
 
             <ul className="tasks-list">
                 {tasksProject.length === 0
