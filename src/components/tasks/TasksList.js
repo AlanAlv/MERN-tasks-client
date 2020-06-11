@@ -4,7 +4,7 @@ import projectContext from '../../context/projects/projectContext';
 
 const TasksList = () => {
 
-    // Projects State
+    // Current Project State
     const projectsContext = useContext(projectContext);
 
     const { project } = projectsContext;

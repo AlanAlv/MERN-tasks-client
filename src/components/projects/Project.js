@@ -3,9 +3,8 @@ import projectContext from '../../context/projects/projectContext';
 
 const Project = ({ project }) => {
 
-    // Projects State
+    // Current Project State
     const projectsContext = useContext(projectContext);
-
     const { currentProject } = projectsContext;
 
     return (
