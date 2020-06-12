@@ -8,9 +8,10 @@ const Taskform = () => {
     const projectsContext = useContext(projectContext);
     const { project } = projectsContext;
 
-    // addTask function
+    // task functions
     const tasksContext = useContext(taskContext);
-    const { addTask } = tasksContext;
+    const { errorTask, addTask, validateTask, getTasks } = tasksContext;
+
 
 
 
@@ -41,11 +42,23 @@ const Taskform = () => {
         e.preventDefault();
 
         // Validation
+        if(name.trim() === ''){
+            validateTask();
+            return;
+        }
 
         // Add task to state
         task.projectId = currentProject.id;
         task.state = false;
         addTask(task);
+
+        // Get and filter tasks
+        getTasks(currentProject.id);
+
+        // Reset form
+        saveTask({
+            name: ''
+        })
     }
 
     return ( 
@@ -72,6 +85,14 @@ const Taskform = () => {
                     />    
                 </div>
             </form>
+            {errorTask 
+                ? 
+                    <p className="message error">
+                        The Task name is required
+                    </p>
+                :    
+                    null
+            }
         </div>
      );
 }
