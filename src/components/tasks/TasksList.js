@@ -15,13 +15,7 @@ const TasksList = () => {
     // Destructure current project
     const [ currentProject ] = project
 
-    const tasksProject = [
-        { name: 'Choose Product', state: true },
-        { name: 'Choose Color', state: true },
-        { name: 'Add to cart', state: true },
-        { name: 'Pay Product', state: false },
-
-    ]
+    const tasksProject = [];
 
     const onClickDelete = () => {
         deleteProject(currentProject.id)
