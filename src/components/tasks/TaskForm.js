@@ -13,8 +13,6 @@ const Taskform = () => {
     const { errorTask, addTask, validateTask, getTasks } = tasksContext;
 
 
-
-
     // Form state
     const [ task, saveTask ] = useState({
         name: ''

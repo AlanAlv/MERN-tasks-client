@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import taskContext from '../../context/tasks/taskContext';
 
 const Task = ({ task }) => {
+
+    // Task functions
+    const tasksContext = useContext(taskContext);
+    const { deleteTask, getTasks } = tasksContext;
+
+
+    // User click delete task
+    const taskDelete = id => {
+        deleteTask(id);
+        getTasks(task.projectId);
+    }
+    
     return (  
 
         <li className="task shadow">
@@ -40,6 +53,7 @@ const Task = ({ task }) => {
                 <button
                     type="button"
                     className="btn btn-secondary"
+                    onClick={() => taskDelete(task.id)}
                 >
                     Delete    
                 </button>
