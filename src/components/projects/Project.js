@@ -8,8 +8,9 @@ const Project = ({ project }) => {
     const projectsContext = useContext(projectContext);
     const { currentProject } = projectsContext;
 
+    // getTasks function
     const tasksContext = useContext(taskContext);
-    const { getTasks } = projectsContext;
+    const { getTasks } = tasksContext;
 
     const selectProject = id => {
         currentProject(id); // Set current project

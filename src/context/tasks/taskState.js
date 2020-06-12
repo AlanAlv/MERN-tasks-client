@@ -18,7 +18,8 @@ const TaskState = props => {
             { name: 'Add to cart', state: true,  projectId: 1 },
             { name: 'Pay Product', state: false, projectId: 1 }
     
-        ]
+        ],
+        tasksProject: null
     
     }
 
@@ -31,12 +32,13 @@ const TaskState = props => {
             type: TASKS_PROJECT,
             payload: projectId
         })
-    })
+    }
 
     return(
         <TaskContext.Provider
             value={{
                 tasks: state.tasks,
+                tasksProject: state.tasksProject,
                 getTasks
             }}
         >

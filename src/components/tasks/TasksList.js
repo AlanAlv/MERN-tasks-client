@@ -1,21 +1,25 @@
 import React, { Fragment, useContext } from 'react';
 import Task from './Task';
 import projectContext from '../../context/projects/projectContext';
+import taskContext from '../../context/tasks/taskContext';
+
 
 const TasksList = () => {
 
     // Current Project State
     const projectsContext = useContext(projectContext);
-
     const { project, deleteProject } = projectsContext;
+
+    // Get tasks
+    const tasksContext = useContext(taskContext);
+    const { tasksProject } = tasksContext;
+
 
     // No current project
     if (!project) return <h2>Select a project</h2>
 
     // Destructure current project
     const [ currentProject ] = project
-
-    const tasksProject = [];
 
     const onClickDelete = () => {
         deleteProject(currentProject.id)
