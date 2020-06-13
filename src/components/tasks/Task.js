@@ -5,7 +5,7 @@ const Task = ({ task }) => {
 
     // Task functions
     const tasksContext = useContext(taskContext);
-    const { deleteTask, getTasks, changeStateTask } = tasksContext;
+    const { deleteTask, getTasks, changeStateTask, saveCurrentTask } = tasksContext;
 
 
     // User click delete task
@@ -24,6 +24,12 @@ const Task = ({ task }) => {
 
         changeStateTask(task);
     }
+
+    // Selects currentTask when user clicks edit
+    const selectTask = task => {
+        saveCurrentTask(task);
+    }
+
     return (  
 
         <li className="task shadow">
@@ -58,6 +64,7 @@ const Task = ({ task }) => {
                 <button
                     type="button"
                     className="btn btn-primary"
+                    onClick={() => selectTask(task)}
                 >
                     Edit
                 </button>

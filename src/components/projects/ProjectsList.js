@@ -12,6 +12,7 @@ const ProjectsList = () => {
     // Get Projects on load
     useEffect(() => {
         getProjects();
+        // eslint-disable-next-line
     }, [])
 
 
