@@ -5,7 +5,7 @@ const Task = ({ task }) => {
 
     // Task functions
     const tasksContext = useContext(taskContext);
-    const { deleteTask, getTasks } = tasksContext;
+    const { deleteTask, getTasks, changeStateTask } = tasksContext;
 
 
     // User click delete task
@@ -14,6 +14,16 @@ const Task = ({ task }) => {
         getTasks(task.projectId);
     }
     
+    // Changes Task state
+    const changeState = task => {
+        if(task.state) {
+            task.state =false;
+        } else {
+            task.state = true;
+        }
+
+        changeStateTask(task);
+    }
     return (  
 
         <li className="task shadow">
@@ -26,6 +36,7 @@ const Task = ({ task }) => {
                             <button
                                 type="button"
                                 className="complete"
+                                onClick={() => changeState(task)}
                             >
                                 Complete
                             </button>
@@ -35,6 +46,7 @@ const Task = ({ task }) => {
                         <button
                             type="button"
                             className="incomplete"
+                            onClick={() => changeState(task)}
                         >
                             InComplete
                         </button>
