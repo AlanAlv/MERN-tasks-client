@@ -25,7 +25,7 @@ const NewAccount = () => {
         })
     }
 
-    // User cliks Login
+    // User clicks Login
     const onSubmitLogin = e => {
         e.prevent.default();
 
@@ -46,6 +46,8 @@ const NewAccount = () => {
             showAlert('Your password and confirmation password do not match', 'alert-error')
             return;
         }
+
+        // 
     }
 
     return ( 
