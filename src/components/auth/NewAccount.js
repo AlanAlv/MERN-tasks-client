@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AlertContext from '../../context/alerts/alertContext';
+import AuthContext from '../../context/auth/authContext';
+
 
 const NewAccount = () => {
     
