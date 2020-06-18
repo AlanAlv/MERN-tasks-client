@@ -10,6 +10,9 @@ const NewAccount = () => {
     const alertContext = useContext(AlertContext);
     const { alert, showAlert } = alertContext;
 
+    const authContext = useContext(AuthContext);
+    const { registerUser } = authContext;
+
     const [ user, saveUser] = useState({
         name: '',
         email: '',
@@ -29,7 +32,7 @@ const NewAccount = () => {
 
     // User clicks Login
     const onSubmitLogin = e => {
-        e.prevent.default();
+        e.preventDefault();
 
         // Validate is empty
         if (name.trim() === '' || email.trim() === '' || 
@@ -50,6 +53,12 @@ const NewAccount = () => {
         }
 
         // 
+        registerUser({
+            name, 
+            email, 
+            password}
+        );
+        
     }
 
     return ( 
