@@ -14,9 +14,9 @@ const Login = (props) => {
     
     // User or password does not existexist
     useEffect(() => {
-/*         if (authenticated) {
+         if (authenticated) {
             props.history.push('/projects');
-        } */
+        } 
 
         if (message) {
             showAlert(message.msg, message.category);

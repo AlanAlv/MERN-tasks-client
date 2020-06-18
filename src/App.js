@@ -8,6 +8,14 @@ import ProjectState from './context/projects/projectState';
 import TaskState from './context/tasks/taskState';
 import AlertState from './context/alerts/alertState';
 import AuthState from './context/auth/authState';
+import authToken from './config/authToken';
+
+// Check token
+const token = localStorage.getItem('token');
+
+if (token) {
+  authToken(token);
+}
 
 function App() {
   console.log(process.env.REACT_APP_BACKEND_URL);
