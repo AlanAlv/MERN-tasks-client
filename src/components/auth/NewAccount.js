@@ -80,7 +80,8 @@ const NewAccount = (props) => {
                         {alert.msg}
                     </div>
                 : 
-                    null}
+                    null
+            }
             <div className="container-form shadow-dark">
                 <h1>Create Account</h1>
                 <form

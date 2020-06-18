@@ -1,10 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import AlertContext from '../../context/alerts/alertContext';
+import AuthContext from '../../context/auth/authContext';
 
+const Login = (props) => {
 
-const Login = () => {
+    // Destructure context
+    const alertContext = useContext(AlertContext);
+    const { alert, showAlert } = alertContext;
 
+    const authContext = useContext(AuthContext);
+    const { message, authenticated, logIn } = authContext;
     
+    // User or password does not existexist
+    useEffect(() => {
+/*         if (authenticated) {
+            props.history.push('/projects');
+        } */
+
+        if (message) {
+            showAlert(message.msg, message.category);
+        }
+    }, [message, authenticated, props.history])
+
     const [ user, saveUser] = useState({
         email: '',
         password: ''
@@ -22,11 +40,27 @@ const Login = () => {
 
     // User cliks Login
     const onSubmitLogin = e => {
-        e.prevent.default();
+        e.preventDefault();
+
+        // Validation
+        if (email.trim() === '' || password.trim() === '') {
+            showAlert('All fields are required', 'alert-error');
+        }
+
+        // Send
+        logIn({ email, password });
     }
 
     return ( 
         <div className="form-user">
+            { alert 
+                ?  
+                    <div className={`alert ${alert.category}`}> 
+                        {alert.msg}
+                    </div>
+                : 
+                    null
+            }
             <div className="container-form shadow-dark">
                 <h1>Login</h1>
                 <form
