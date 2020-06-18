@@ -5,7 +5,7 @@ const Header = () => {
 
     // Destructure auth data
     const authContext = useContext(AuthContext);
-    const { user, authenticatedUser } = authContext;
+    const { user, authenticatedUser, logOut } = authContext;
 
     useEffect(() => {
         authenticatedUser();
@@ -17,14 +17,19 @@ const Header = () => {
             {user
                 ?
                     <p className="username">
-                        Hello <span>{user}</span>
+                        Hello <span>{user.name}</span>
                     </p>
                 :
                     null
             }   
 
             <nav className="nav-main">
-                <a href="#!">Sign Out</a>
+                <button 
+                    className="btn btn-blank close-session"
+                    onClick={() => logOut()}
+                >
+                    Log Out
+                </button>
             </nav>
         </header>
      );
