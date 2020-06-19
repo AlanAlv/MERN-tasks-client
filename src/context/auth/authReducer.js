@@ -12,11 +12,11 @@ export default (state, action) => {
         case LOGIN_SUCCESS:
         case REGISTER_SUCCESS:
             localStorage.setItem('token', action.payload.token);
-
             return {
                 ...state,
                 authenticated: true,
-                message: null
+                message: null,
+                loading: false
             }
         case LOG_OUT:
         case LOGIN_ERROR: 
@@ -27,13 +27,15 @@ export default (state, action) => {
                 token: null,
                 user: null,
                 authenticated: null,
-                message: action.payload
+                message: action.payload,
+                loading: false
             }
         case GET_USER: 
             return {
                 ...state,
                 authenticated: true,
-                user: action.payload
+                user: action.payload,
+                loading: false
             }
 
 
