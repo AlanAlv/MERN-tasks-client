@@ -76,14 +76,6 @@ const TaskState = props => {
         }
     }
 
-    // Changes task state
-    const changeStateTask = task => {
-        dispatch({
-            type: STATE_TASK,
-            payload: task
-        })
-    }
-
     // Current task for edit
     const saveCurrentTask = task => {
         dispatch({
@@ -93,11 +85,18 @@ const TaskState = props => {
     }
 
     // Edits task
-    const updateTask = task => {  
-        dispatch({
-            type: UPDATE_TASK,
-            payload: task
-        })
+    const updateTask = async task => {  
+            try {
+                const result = await clientAxios.put(`/api/tasks/${task._id}`, task);
+                console.log(result);
+                dispatch({
+                    type: UPDATE_TASK,
+                    payload: result.data.task
+                })
+            } catch (error) {
+                console.log(error);
+            }
+
     }
         
     // Clears selected task
@@ -116,7 +115,6 @@ const TaskState = props => {
                 addTask,
                 validateTask,
                 deleteTask,
-                changeStateTask,
                 saveCurrentTask,
                 updateTask,
                 clearTask
