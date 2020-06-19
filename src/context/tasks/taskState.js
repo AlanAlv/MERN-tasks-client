@@ -1,7 +1,6 @@
 import React, { useReducer } from 'react'
 import TaskContext from './taskContext';
 import TaskReducer from './taskReducer';
-import { v4 as uuidv4 }  from 'uuid';
 
 import {
     TASKS_PROJECT,
@@ -14,20 +13,12 @@ import {
     CLEAR_TASK
 } from '../../types'
 
+import clientAxios from '../../config/axios';
+
+
 const TaskState = props => {
     const initialState = {
-        tasks: [
-            { id: 1, name: 'Choose Product', state: true, projectId: 1 },
-            { id: 2, name: 'Choose Color', state: true, projectId: 2},
-            { id: 3, name: 'Add to cart', state: true,  projectId: 3 },
-            { id: 4, name: 'Pay Product', state: false, projectId: 4 },
-            { id: 5, name: 'Choose Product', state: true, projectId: 3 },
-            { id: 6, name: 'Choose Color', state: true, projectId: 2},
-            { id: 7, name: 'Add to cart', state: true,  projectId: 1 },
-            { id: 8, name: 'Pay Product', state: false, projectId: 1 }
-    
-        ],
-        tasksProject: null,
+        tasksProject: [],
         errorTask: false,
         selectedTask: null
     
@@ -45,12 +36,18 @@ const TaskState = props => {
     }
 
     // Add task to selected project
-    const addTask = task => {
-        task.id = uuidv4();
-        dispatch({
-            type: ADD_TASK,
-            payload: task
-        })
+    const addTask = async task => {
+        const result = await clientAxios.post('/api/tasks', task);
+        console.log(result);
+        try {
+            dispatch({
+                type: ADD_TASK,
+                payload: task
+            })  
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
     // Validate & show error
@@ -101,7 +98,6 @@ const TaskState = props => {
     return(
         <TaskContext.Provider
             value={{
-                tasks: state.tasks,
                 tasksProject: state.tasksProject,
                 errorTask: state.errorTask,
                 selectedTask: state.selectedTask,
