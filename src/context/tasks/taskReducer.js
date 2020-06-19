@@ -31,7 +31,7 @@ export default (state, action) => {
             return {
                 ...state,
                 tasksProject: state.tasksProject.filter(task => 
-                    task.id !== action.payload)
+                    task._id !== action.payload)
             }
         case UPDATE_TASK:
         case STATE_TASK:
