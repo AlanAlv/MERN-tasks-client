@@ -1,19 +1,26 @@
 import React, { useContext, useEffect } from 'react';
 import Project from './Project';
 import projectContext from '../../context/projects/projectContext';
+import AlertContext from '../../context/alerts/alertContext';
 import { CSSTransition, TransitionGroup} from 'react-transition-group';
 
 const ProjectsList = () => {
 
     // Destructure projects from initial state
     const projectsContext = useContext(projectContext);
-    const { projects, getProjects } = projectsContext;
+    const { message, projects, getProjects } = projectsContext;
+
+    const alertContext = useContext(AlertContext);
+    const { alert, showAlert } = alertContext
 
     // Get Projects on load
     useEffect(() => {
+        if (message) {
+            showAlert(message.msg, message.category);
+        }
         getProjects();
         // eslint-disable-next-line
-    }, [])
+    }, [message]);
 
 
     // Validate if there are projects
@@ -22,6 +29,16 @@ const ProjectsList = () => {
 
     return ( 
         <ul className="projects-list">
+            {alert 
+                ?
+                    (
+                        <div className={`alert ${alert.category}`}>
+                            {alert.msg}
+                        </div>
+                    )
+                :
+                    null
+            }
            <TransitionGroup>
                 {projects.map(project => (
                     <CSSTransition

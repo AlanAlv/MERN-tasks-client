@@ -6,6 +6,7 @@ import {
     PROJECT_FORM, 
     GET_PROJECTS,
     ADD_PROJECT,
+    PROJECT_ERROR,
     VALIDATE_FORM,
     CURRENT_PROJECT,
     DELETE_PROJECT
@@ -19,7 +20,8 @@ const ProjectState = props => {
         projects : [],
         form : false,
         formError : false,
-        project: null
+        project: null,
+        message: null
     }
 
     // Dispatch actions
@@ -41,8 +43,15 @@ const ProjectState = props => {
                 type: GET_PROJECTS,
                 payload: result.data.projects
             });
-        } catch (error) {
-            console.log(error);
+        }  catch (error) {
+            const alert = {
+                msg: 'There was an error',
+                category: 'alert-error'
+            }
+            dispatch({
+                type: PROJECT_ERROR,
+                payload: alert
+            })
         }
     }
 
@@ -58,8 +67,15 @@ const ProjectState = props => {
                 type: ADD_PROJECT,
                 payload: result.data
             })
-        } catch (error) {
-            console.log(error);
+        }  catch (error) {
+            const alert = {
+                msg: 'There was an error',
+                category: 'alert-error'
+            }
+            dispatch({
+                type: PROJECT_ERROR,
+                payload: alert
+            })
         }
     }
 
@@ -79,11 +95,24 @@ const ProjectState = props => {
     }
 
     // Delete project
-    const deleteProject = projectId => {
-        dispatch({
-            type: DELETE_PROJECT,
-            payload: projectId
-        })
+    const deleteProject = async projectId => {
+        try {
+            await clientAxios.delete(`/api/projects/10`);
+            dispatch({
+                type: DELETE_PROJECT,
+                payload: projectId
+            })
+        } catch (error) {
+            const alert = {
+                msg: 'There was an error',
+                category: 'alert-error'
+            }
+            console.log(alert)
+            dispatch({
+                type: PROJECT_ERROR,
+                payload: alert
+            })
+        }
     }
 
     return(
@@ -93,6 +122,7 @@ const ProjectState = props => {
                 form: state.form,
                 formError: state.formError,
                 project: state.project,
+                message: state.message,
                 showForm,
                 getProjects,
                 addProject,

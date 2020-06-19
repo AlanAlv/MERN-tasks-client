@@ -2,6 +2,7 @@ import {
     PROJECT_FORM, 
     GET_PROJECTS,
     ADD_PROJECT,
+    PROJECT_ERROR,
     VALIDATE_FORM,
     CURRENT_PROJECT,
     DELETE_PROJECT
@@ -42,10 +43,14 @@ export default (state, action) => {
             return{
                 ...state,
                 projects: state.projects.filter(project => 
-                    project.id !== action.payload),
+                    project._id !== action.payload),
                     project: null
             }
-            
+        case PROJECT_ERROR:
+            return {
+                ...state,
+                message: action.payload
+            }
             
         default:
             return state;
