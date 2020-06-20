@@ -70,7 +70,7 @@ const Taskform = () => {
         }
 
         // Get and filter tasks
-        getTasks(currentProject.id);
+        getTasks(currentProject._id);
 
         // Reset form
         saveTask({
